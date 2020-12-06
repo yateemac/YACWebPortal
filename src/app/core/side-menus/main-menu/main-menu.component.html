@@ -1,0 +1,398 @@
+<div>
+  <img src="./../../../../assets/imgs/logos/YACLetterHead.jpg" style="height: 100%; width: 100%;">
+</div> 
+
+<ul class="side-menu-navigation nav flex-column">
+  <li class="menu-item expandable-item nav-item" [routerLinkActive]="['active']" *ngIf="showCRM">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header class="menu-link">
+        <div class="item-header-content">
+          <mat-panel-title>
+            <i class="material-icons">headset_mic</i>&nbsp;&nbsp;
+            <span class="menu-item-title">CRM</span>
+          </mat-panel-title>
+        </div>
+      </mat-expansion-panel-header>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/crm/dashboard']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/crm/customer-profiles']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Customer Profiles</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/crm/contacts']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Contacts</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/crm/sales-orders']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Sales Orders</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/crm/billing-and-payments']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Billing & Payments</span>
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </li>
+  <li class="menu-item expandable-item nav-item" [routerLinkActive]="['active']" *ngIf="showSC">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header class="menu-link">
+        <div class="item-header-content">
+          <mat-panel-title>
+            <i class="material-icons">local_shipping</i>&nbsp;&nbsp;
+            <span class="menu-item-title">Supply Chain</span>
+          </mat-panel-title>
+        </div>
+      </mat-expansion-panel-header>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/supply-chain/dashboard']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/supply-chain/wendor-management']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Wendor Management</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/supply-chain/material-requisition']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Material Requisition</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/supply-chain/quotations']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Quotations</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/supply-chain//purchase-orders']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Purchase Orders</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/supply-chain/goods-received-notes']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Goods Recieved Notes</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/supply-chain/invoices-and-payments']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Invoices & Payments</span>
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </li>
+  <li class="menu-item expandable-item nav-item" [routerLinkActive]="['active']" *ngIf="showMMP">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header class="menu-link">
+        <div class="item-header-content">
+          <mat-panel-title>
+            <i class="material-icons">toys</i>&nbsp;&nbsp;
+            <span class="menu-item-title">MMP</span>
+          </mat-panel-title>
+        </div>
+      </mat-expansion-panel-header>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/dashboard']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/complaints-and-calls']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Complaints & Calls</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/tenants-and-complainants']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Tenants & Complainants</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/premises-master']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Premises Master</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/assets-and-equipments']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Assets & Equipments</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/service-agreements']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Service Agreements</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/work-orders']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Work Orders</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/job-card']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Job Card</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/work-profile']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Work Profile</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/resource-management']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Resource Management</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/billing-and-payments']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Billing & Payments</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/ppm']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">PPM</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mmp/scopes-and-procedures']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Scopes & Procedures</span>
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </li>
+  <li class="menu-item expandable-item nav-item" [routerLinkActive]="['active']" *ngIf="showMIS">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header class="menu-link">
+        <div class="item-header-content">
+          <mat-panel-title>
+            <i class="material-icons">museum</i>&nbsp;&nbsp;
+            <span class="menu-item-title">Management Reports</span>
+          </mat-panel-title>
+        </div>
+      </mat-expansion-panel-header>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mis/sales']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Sales Revenues</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mis/receivables']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Receivables</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mis/payables']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Payables</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mis/hr']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">HR</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/mis/financials']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Financials</span>
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </li>
+  <li class="menu-item expandable-item nav-item" [routerLinkActive]="['active']" *ngIf="showPMP">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header class="menu-link">
+        <div class="item-header-content">
+          <mat-panel-title>
+            <i class="material-icons">account_tree</i>&nbsp;&nbsp;
+            <span class="menu-item-title">PMP</span>
+          </mat-panel-title>
+        </div>
+      </mat-expansion-panel-header>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/pmp/dashboard']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Dashboard</span>
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </li>
+  <li class="menu-item expandable-item nav-item" [routerLinkActive]="['active']" *ngIf="showHRMS">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header class="menu-link">
+        <div class="item-header-content">
+          <mat-panel-title>
+            <i class="material-icons">group_add</i>&nbsp;&nbsp;
+            <span class="menu-item-title">HRMS</span>
+          </mat-panel-title>
+        </div>
+      </mat-expansion-panel-header>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/hrms/dashboard']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/hrms/premises']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Premises</span>
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </li>
+  <li class="menu-item expandable-item nav-item" [routerLinkActive]="['active']" *ngIf="showECom">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header class="menu-link">
+        <div class="item-header-content">
+          <mat-panel-title>
+            <i class="material-icons">local_mall</i>&nbsp;&nbsp;
+            <span class="menu-item-title">E-Commerce</span>
+          </mat-panel-title>
+        </div>
+      </mat-expansion-panel-header>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/ecommerce/dashboard']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Dashboard</span>
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </li>
+  <li class="menu-item expandable-item nav-item" [routerLinkActive]="['active']" *ngIf="showWMS">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header class="menu-link">
+        <div class="item-header-content">
+          <mat-panel-title>
+            <i class="material-icons">storage</i>&nbsp;&nbsp;
+            <span class="menu-item-title">WMS</span>
+          </mat-panel-title>
+        </div>
+      </mat-expansion-panel-header>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" routerLink="/wms/dashboard">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/wms/put-away']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Put Away</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/wms/dispatches']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Dispatches</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/wms/analytics']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Analytics</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/wms/notifications']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Notifications</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/wms/racks-and-shelves']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Racks & Shelves</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/wms/products']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Products</span>
+          </a>
+        </li>
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/wms/tasks']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Tasks</span>
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </li>
+  <li class="menu-item expandable-item nav-item" [routerLinkActive]="['active']" *ngIf="showAT">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header class="menu-link">
+        <div class="item-header-content">
+          <mat-panel-title>
+            <i class="material-icons">settings</i>&nbsp;&nbsp;
+            <span class="menu-item-title">Admin Tools</span>
+          </mat-panel-title>
+        </div>
+      </mat-expansion-panel-header>
+      <ul class="menu-sub-navigation nav flex-column">
+        <li class="menu-item nav-item" [routerLinkActive]="['active']">
+          <a class="menu-link nav-link" [routerLinkActive]="['active']" [routerLink]="['/admin-tools/dashboard']">
+            <i class="menu-item-icon"></i>
+            <span class="menu-item-title">Dashboard</span>
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </li>
+</ul>

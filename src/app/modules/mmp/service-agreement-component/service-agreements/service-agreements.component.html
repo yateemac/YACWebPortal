@@ -1,0 +1,29 @@
+<div class="container-fluid content-wrapper">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h3 class="page-title">Service Agreements</h3>
+            <hr>
+            <!-- <div class="chart-card">
+                <div class="chart-card-body"> -->
+                    <div class="container" style="margin-top: 30px;" *ngIf="!isHidden">
+                        <button class="btn btn-outline-primary btn-large" (click)="changeList()">View List of Expired Agreements</button>
+                        <h5><br>List of Running Agreements</h5>
+                        <app-service-agreements-child *ngFor="let runningAgreement of runningAgreements; let srno=index;" [agreement]="runningAgreement" [srno]="srno"></app-service-agreements-child>
+                        <br>
+                        <hr>
+                    </div>
+                    <div class="container" style="margin-top: 30px;" *ngIf="isHidden">
+                        <button class="btn btn-outline-primary btn-large" (click)="changeList()">View List of Running Agreements</button>
+                        <h5><br>List of Expired Agreements</h5>
+                        <app-service-agreements-child *ngFor="let expiredAgreement of expiredAgreements; let srno=index;" [agreement]="expiredAgreement" [srno]="srno"></app-service-agreements-child>
+                        <br>
+                        <hr>
+                    </div>
+            <!--</div>
+            </div>
+            -->    
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

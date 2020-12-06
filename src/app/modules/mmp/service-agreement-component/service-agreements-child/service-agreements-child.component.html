@@ -1,0 +1,74 @@
+<div class="zippy">
+    <div class="zippy-heading" [class.expanded]="isExpanded" (click)="toggle()">
+        <div class="row">
+            <div class="col-1">
+                {{ srno+1 }}
+            </div>
+            <div class="col-11">
+                <div class="row">
+                    <div class="col-4">
+                        <b>Job Name</b>
+                    </div>
+                    <div class="col-4">
+                        <b>Agreement</b>
+                    </div>
+                    <div class="col-4">
+                        <b>Amount</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p>{{ agreement.JOBNO }}<br>{{ agreement.JOBNAME }}</p>
+                    </div>
+                    <div class="col-4">
+                        <p>{{ agreement.AGR_NO }}</p>
+                    </div>
+                    <div class="col-4">
+                        <p>BHD {{ agreement.AGR_AMT }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isExpanded" class="zippy-body">
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-4">
+                        <b>Customer Name:</b>
+                    </div>
+                    <div class="col-8">
+                        <p>{{ agreement.CUST_CODE }}<br>{{ agreement.CUST_NAME }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <b>Start Date:</b>
+                    </div>
+                    <div class="col-8">
+                        <p>{{ agreement.START_DATE | date:"dd/MM/yyyy" }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <b>End Date:</b>
+                    </div>
+                    <div class="col-8">
+                        <p>{{ agreement.END_DATE | date:"dd/MM/yyyy" }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-outline-primary" (click)="changeDetail()">{{ message }}</button>
+            </div>
+        </div>
+        <div *ngIf="!isHidden">
+            <p>Customer-wise Ageing:</p>
+            <app-service-agreements-customer-wise-ageing [custCode]="agreement.CUST_CODE"></app-service-agreements-customer-wise-ageing>
+        </div>
+        <div *ngIf="isHidden">
+            <p>List of associated work orders:</p>
+            <app-service-agreements-workorder-details [jobno]="agreement.JOBNO"></app-service-agreements-workorder-details>
+        </div>
+    </div>
+</div>

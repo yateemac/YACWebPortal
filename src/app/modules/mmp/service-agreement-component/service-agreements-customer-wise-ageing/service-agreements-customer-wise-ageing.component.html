@@ -1,0 +1,39 @@
+<!-- Ageing Chart -->
+<div class="row">    
+    <div class="col-12">
+        <div class="chart-card">
+    <div class="chart-card-header">
+        <span>Total Ageing</span>
+    </div>
+    <div class="chart-card-body">
+        <canvas id="totalAgeingChart"></canvas>
+    </div>
+</div>
+<!-- Ageing Table -->
+<p><br>Ageing Summary</p>
+<table class="table table-hover table-striped table-bordered table-responsive">
+    <thead>
+        <tr>
+            <th>30 Days</th>
+            <th>60 Days</th>
+            <th>90 Days</th>
+            <th>120 Days</th>
+            <th>180 Days</th>
+            <th>365 Days</th>
+            <th>Above 365 Days</th>
+            <th>Net Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rprt of ageingRprt">
+            <td>BHD {{ rprt.M_30_DAYS }}</td>
+            <td>BHD {{ rprt.M_60_DAYS }}</td>
+            <td>BHD {{ rprt.M_90_DAYS }}</td>
+            <td>BHD {{ rprt.M_120_DAYS }}</td>
+            <td>BHD {{ rprt.M_180_DAYS }}</td>
+            <td>BHD {{ rprt.M_365_DAYS }}</td>
+            <td>BHD {{ rprt.ABOVE_365_DAYS }}</td>
+            <td>BHD {{ rprt.NET_BALANCE }}</td>
+        </tr>
+    </tbody>
+</table>

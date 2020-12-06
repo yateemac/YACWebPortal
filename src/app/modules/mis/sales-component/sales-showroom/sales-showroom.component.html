@@ -1,0 +1,213 @@
+<div class="container-fluid content-wrapper">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h3 class="page-title">Showroom Sales</h3>
+            <hr>
+            <button class="btn btn-link" [routerLink]="['/mis/sales']"><u>&larr; Go back to sales</u></button>
+            <div class="row">
+                <div class="col-4">
+                    <button class="btn btn-outline-info btn-block" (click)="showYMSSRprt()">View Year & Month-wise Sales Report</button>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-outline-info btn-block" (click)="showDSSRprt()">View Day-wise Sales Report</button>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-outline-info btn-block" (click)="showISSRprt()">View Item-wise Sales Report</button>
+                </div>
+                <div class="col-12">
+                    <div *ngIf="showYMSS">
+                        <h5><br>Total Sales<br></h5>
+                        <table class="table table-hover table-striped table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">YEAR {{ curYear }} (Till Date)</th>
+                                    <th colspan="3">YEAR {{ preYear }}</th>
+                                </tr>
+                                <tr>
+                                    <th>Selling (BHD)</th>
+                                    <th>Cost (BHD)</th>
+                                    <th>Gross Profit (BHD)</th>
+                                    <th>Selling (BHD)</th>
+                                    <th>Cost (BHD)</th>
+                                    <th>Gross Profit (BHD)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let crprt of curYearRprt; let i = index">
+                                    <td>{{ curYearRprt[i].SELLLING | number:'1.3' }}</td>
+                                    <td>{{ curYearRprt[i].COST | number:'1.3' }}</td>
+                                    <td>{{ curYearRprt[i].GROSS | number:'1.3' }}</td>
+                                    <td>{{ preYearRprt[i].SELLLING | number:'1.3' }}</td>
+                                    <td>{{ preYearRprt[i].COST | number:'1.3' }}</td>
+                                    <td>{{ preYearRprt[i].GROSS | number:'1.3' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5><br>Month-wise Sales</h5>
+                        <table class="table table-hover table-striped table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="3">YEAR {{ curYear }} (Till Date)</th>
+                                    <th colspan="3">YEAR {{ preYear }}</th>
+                                </tr>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Selling (BHD)</th>
+                                    <th>Cost (BHD)</th>
+                                    <th>Gross Profit (BHD)</th>
+                                    <th>Selling (BHD)</th>
+                                    <th>Cost (BHD)</th>
+                                    <th>Gross Profit (BHD)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let cmrprt of curYearMonthRprt; let i = index">
+                                    <td>{{ monthArr[i] }}</td>
+                                    <td>{{ curYearMonthRprt[i].SELLLING | number:'1.3' }}</td>
+                                    <td>{{ curYearMonthRprt[i].COST | number:'1.3' }}</td>
+                                    <td>{{ curYearMonthRprt[i].GROSS | number:'1.3' }}</td>
+                                    <td>{{ preYearMonthRprt[i].SELLLING | number:'1.3' }}</td>
+                                    <td>{{ preYearMonthRprt[i].COST | number:'1.3' }}</td>
+                                    <td>{{ preYearMonthRprt[i].GROSS | number:'1.3' }}</td>
+                                </tr>
+                                <tr *ngFor="let crprt of curYearRprt; let i = index">
+                                    <th>TOTAL</th>
+                                    <th>{{ curYearRprt[i].SELLLING | number:'1.3' }}</th>
+                                    <th>{{ curYearRprt[i].COST | number:'1.3' }}</th>
+                                    <th>{{ curYearRprt[i].GROSS | number:'1.3' }}</th>
+                                    <th>{{ preYearTotal.SELLING | number:'1.3' }}</th>
+                                    <th>{{ preYearTotal.COST | number:'1.3' }}</th>
+                                    <th>{{ preYearTotal.GROSS | number:'1.3' }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div *ngIf="showISS">
+                        <div class="row">
+                            <br>
+                            <div class="col-4">
+                                <h5><br>Item-wise Sales<br></h5>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <br>
+                                <button class="btn btn-primary btn-block" (click)="changeList()">Change Year</button>
+                            </div>
+                        </div>
+                        <div *ngIf="!showYearItemList">
+                            <div class="col-12"><h4>{{ curYear }}</h4></div>
+                            <table class="table table-hover table-striped table-bordered table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Sl No.</th>
+                                        <th>Product</th>
+                                        <th>Quantity Sold</th>
+                                        <th>Selling (BHD)</th>
+                                        <th>Cost (BHD)</th>
+                                        <th>Gross Profit (BHD)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let rprt of curYearItemWiseRprt; let i = index">
+                                        <td>{{ i+1 }}</td>
+                                        <td>{{ rprt.PCODE }}<br>{{ rprt.DESCRIPTION }}</td>
+                                        <td>{{ rprt.QTY }}</td>
+                                        <td>{{ rprt.SELLLING | number:'1.3' }}</td>
+                                        <td>{{ rprt.COST | number:'1.3' }}</td>
+                                        <td>{{ rprt.GROSS | number:'1.3' }}</td>
+                                    </tr>
+                                    <tr *ngFor="let crprt of curYearRprt; let i = index">
+                                        <th colspan="3">TOTAL</th>
+                                        <th>{{ curYearRprt[i].SELLLING | number:'1.3' }}</th>
+                                        <th>{{ curYearRprt[i].COST | number:'1.3' }}</th>
+                                        <th>{{ curYearRprt[i].GROSS | number:'1.3' }}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div *ngIf="showYearItemList">
+                            <div class="col-12"><h4>{{ preYear }}</h4></div>
+                            <table class="table table-hover table-striped table-bordered table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Sl No.</th>
+                                        <th>Product</th>
+                                        <th>Quantity Sold</th>
+                                        <th>Selling (BHD)</th>
+                                        <th>Cost (BHD)</th>
+                                        <th>Gross Profit (BHD)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let rprt of preYearItemWiseRprt; let i = index">
+                                        <td>{{ i+1 }}</td>
+                                        <td>{{ rprt.PCODE }}<br>{{ rprt.DESCRIPTION }}</td>
+                                        <td>{{ rprt.QTY }}</td>
+                                        <td>{{ rprt.SELLLING | number:'1.3' }}</td>
+                                        <td>{{ rprt.COST | number:'1.3' }}</td>
+                                        <td>{{ rprt.GROSS | number:'1.3' }}</td>
+                                    </tr>
+                                    <tr *ngFor="let rprt of preYearRprt; let i = index">
+                                        <td colspan="3"><b>TOTAL</b></td>
+                                        <td><b>{{ preYearRprt[i].SELLLING | number:'1.3' }}</b></td>
+                                        <td><b>{{ preYearRprt[i].COST | number:'1.3' }}</b></td>
+                                        <td><b>{{ preYearRprt[i].GROSS | number:'1.3' }}</b></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="showDSS">
+                        <h5><br>Day-wise Sales<br></h5>
+                        <mat-form-field class="example-full-width">
+                            <input matInput #input [matDatepicker]="picker" placeholder="Choose a date">
+                            <mat-datepicker #picker></mat-datepicker> 
+                        </mat-form-field>
+                        &nbsp;<button class="btn btn-outline-primary" (click)="picker.open()">Open</button>
+                        &nbsp;<button class="btn btn-outline-success" (click)="submitDate(input.value)">Submit</button>
+                        <div *ngIf="gotData">
+                            <div *ngIf="gotProducts">
+                                <p>Number of products sold = {{ dayWiseItemRprt.length }}</p>
+                                <table class="table table-hover table-striped table-bordered table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>Sl No.</th>
+                                            <th>Product</th>
+                                            <th>Quantity Sold</th>
+                                            <th>Selling (BHD)</th>
+                                            <th>Cost (BHD)</th>
+                                            <th>Gross Profit (BHD)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let rprt of dayWiseItemRprt; let i = index">
+                                            <td>{{ i+1 }}</td>
+                                            <td>{{ rprt.PCODE }} <br> {{ rprt.DESCRIPTION }}</td>
+                                            <td>{{ rprt.QTY }}</td>
+                                            <td>{{ rprt.SELLLING | number:'1.3' }}</td>
+                                            <td>{{ rprt.COST | number:'1.3' }}</td>
+                                            <td>{{ rprt.GROSS | number:'1.3' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2">TOTAL</th>
+                                            <th>{{ dayWiseTotal.QTY }}</th>
+                                            <th>{{ dayWiseTotal.SELLING | number:'1.3' }}</th>
+                                            <th>{{ dayWiseTotal.COST | number:'1.3' }}</th>
+                                            <th>{{ dayWiseTotal.GROSS | number:'1.3' }}</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div *ngIf="gotError">
+                                <p>Number of products sold = {{ dayWiseItemRprt.length }} <br> There were no products sold on this day.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

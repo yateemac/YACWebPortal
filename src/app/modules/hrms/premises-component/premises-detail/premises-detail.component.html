@@ -1,0 +1,70 @@
+<div class="container-fluid content-wrapper">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h3 class="page-title">Premisis Details</h3>
+            <hr>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <b>{{ data.PREMISISID }} - {{ data.PREMISINAME }}</b><br>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-link" [routerLink]="['/hrms/premises']" style="float: right;">&larr; Go back to Premises list.</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">Area: {{ data.AREA }}</div>
+                    <div class="col-3">Block: {{ data.BLOCK_NBR }}</div>
+                    <div class="col-3">Road: {{ data.ROAD_NBR }}</div>
+                    <div class="col-3">Building: {{ data.BLDG_NBR }}</div>
+                </div>
+            </div>
+            <hr>                   
+            <div class="col-12">
+                <table class="table table-hover table-striped table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Designation</th>
+                            <th>Contact</th>
+                            <th>Time Card</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let employee of employees">
+                            <td><p>{{ employee.EMPID }}</p></td>
+                            <td>{{ employee.EMPNAME }}</td>
+                            <td>{{ employee.DEPARTMENT_NAME }}</td>
+                            <td>{{ employee.DESIGNATION_NAME }}</td>
+                            <td>{{ employee.CONTACT_NUMBER }}</td>
+                            <td>{{ employee.ATT_CARD_NO }}</td>
+                            <td><button class=" btn btn-danger btn-block" (click)="unassignEmp(employee.EMPID)"><i class="material-icons">clear</i></button></td>
+                        </tr>
+                        <tr *ngIf="showAssignForm">
+                            <td><input #input type="text" class="form-control" id="firstname" (focusout)="searchEmp(input.value)"></td>
+                            <td>{{ emp.empname }}</td>
+                            <td>{{ emp.empdept }}</td>
+                            <td>{{ emp.empdesg }}</td>
+                            <td>{{ emp.empmnbr }}</td>
+                            <td>{{ emp.emptmcd }}</td>
+                            <td><button class="btn btn-success btn-block" (click)="submitEmp()"><i class="material-icons">done</i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-2">
+                <div *ngIf="showAssignForm">
+                    <button class="btn btn-danger btn-block" (click)="triggerAssignEmpForm()"><i class="material-icons">clear</i></button>
+                </div>
+                <div *ngIf="!showAssignForm">
+                    <button class="btn btn-success btn-block" (click)="triggerAssignEmpForm()"><i class="material-icons">person_add</i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container-fluid content-wrapper">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h3 class="page-title">Complaints and Calls</h3>
+            <hr>
+            <div class="row">
+                <div class="col-8">
+                    <p>List of complaints/calls recieved on {{ dataDate | date: 'fullDate' }}. <br> Total number of calls recieved is {{ complaints.length }}</p>
+                </div>
+                <div class="col-4">
+                    <button></button>
+                </div>
+            </div>
+            <div class="container" style="margin-top: 30px;" *ngIf="!isFetched">
+                <p>Please wait while we fetch the desired records from our database.</p>
+                <mat-progress-bar mode="query"></mat-progress-bar>
+            </div>
+            <div class="container" style="margin-top: 30px;" *ngIf="isFetched">
+                <app-compncalls-child  *ngFor="let complaint of complaints; let srno=index" [complaint]="complaint" [srno]="srno"></app-compncalls-child>
+                <hr>
+                <p>Would you like to check out some other date?</p>
+                <mat-form-field class="example-full-width">
+                    <input matInput #input [matDatepicker]="picker" placeholder="Choose a date">
+                    <mat-datepicker #picker></mat-datepicker> 
+                </mat-form-field>
+                &nbsp;<button class="btn btn-outline-primary" (click)="picker.open()">Open</button>
+                &nbsp;<button class="btn btn-outline-success" (click)="submitDate(input.value)">Submit</button>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

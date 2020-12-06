@@ -1,0 +1,74 @@
+<div class="row no-gutters signup-page">
+  <div class="col-md-6 col-lg-6 col-sm-12">
+    <img src="../../../assets/imgs/authentication/showroom.png" style="height: 100%; width: 100%;">
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 form-section">
+    <h1 class="page-title">Welcome!</h1>
+    <span class="page-subtitle">
+      Already have an account? <a class="link-text" [routerLink]="['/authentication/signin']">Log In</a>.
+    </span>
+    <form class="signup-form" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" formControlName="username" >
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-lg-6 col-md-12">
+          <label for="firstname">First Name</label>
+          <input type="text" class="form-control" id="firstname" formControlName="firstname" >
+          <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+            <div *ngIf="f.firstname.errors.required">First name is required</div>
+          </div>
+        </div>
+        <div class="form-group col-lg-6 col-md-12">
+          <label for="lastname">Last Name</label>
+          <input type="text" class="form-control" id="lastname" formControlName="lastname" >
+          <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+            <div *ngIf="f.firstname.errors.required">Last name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label for="contactno">Contact Number</label>
+          <input type="text" class="form-control" id="contactno" formControlName="contactno" >
+          <div *ngIf="submitted && f.contactno.errors" class="invalid-feedback">
+            <div *ngIf="f.contactno.errors.required">Contact number is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-lg-6 col-md-12">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password" >
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="notmatched">Passwords do not match</div>
+        </div>
+        </div>
+        <div class="form-group col-lg-6 col-md-12">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" >
+        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+          <div *ngIf="f.confirmPassword.errors.required">Password is required</div>
+          <div *ngIf="notmatched">Passwords do not match</div>
+        </div>
+      </div>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="terms" formControlName="terms">
+        <label class="custom-control-label" for="terms">
+          <span class="custom-label">I agree to the Terms and Privacy Policy.</span>
+        </label>
+      </div>
+      <div class="form-call-to-actions">
+        <button class="create-account-btn" type="submit">Create account</button>
+      </div>
+    </form>
+  </div>
+</div>

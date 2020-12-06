@@ -1,0 +1,22 @@
+<table class="table table-hover table-striped table-bordered table-responsive">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Work Order</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Assigned To</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let workOrder of workOrders; let srno=index;">
+            <td>{{ srno+1 }}</td>
+            <td>{{ workOrder.SCHEDULE_NO }}</td>
+            <td>{{ workOrder.SODATE | date:"dd/MM/yyyy" }}</td>
+            <td>{{ workOrder.SCHEDULE_TYPE }}</td>
+            <td>{{ workOrder.ASSIGNED_TO_NAME }}</td>
+            <td>{{ workOrder.STATUS }}</td>
+        </tr>
+    </tbody>
+</table>

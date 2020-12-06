@@ -1,0 +1,190 @@
+<div class="container-fluid content-wrapper">
+    <div class="row">
+        <div class="col-1" ></div>
+        <div class="col-10">
+            <h3 class="page-title">Premises</h3>
+            <hr>
+            <div class="col-12" *ngIf="showAddPremisesForm">
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <div class="row">
+                            <div class="col-4">
+                                <h5>Add New Premisis</h5>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-block btn-success" type="submit" (click)="postNewPremises()">Submit</button>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-block btn-outline-danger"  (click)="cancelFormAction()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-card-body">
+                        <form [formGroup]="newPremisisForm">
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="premisesid">Premisis ID</label>
+                                    <input type="text" class="form-control form-control-sm" id="premisesid" formControlName="premisesid" >
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="premisesname">Premisis Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="premisesname" formControlName="premisesname" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="latitude">Latitude</label>
+                                    <input type="text" class="form-control form-control-sm" id="latitude" formControlName="latitude" placeholder="00.00000 N/S">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="longitude">Longitude</label>
+                                    <input type="text" class="form-control form-control-sm" id="longitude" formControlName="longitude" placeholder="00.00000 E/W">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-4">
+                                    <label for="areaname">Area Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="areaname" formControlName="areaname" >
+                                </div>
+                                <div class="form-group col-4">
+                                    <label for="roadnbr">Road Number</label>
+                                    <input type="text" class="form-control form-control-sm" id="roadnbr" formControlName="roadnbr" >
+                                </div>
+                                <div class="form-group col-4">
+                                    <label for="blocknbr">Block Number</label>
+                                    <input type="text" class="form-control form-control-sm" id="blocknbr" formControlName="blocknbr" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="bldgnbr">Building Number</label>
+                                    <input type="text" class="form-control form-control-sm" id="bldgnbr" formControlName="bldgnbr" >
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="flatnbr">Flat Number</label>
+                                    <input type="text" class="form-control form-control-sm" id="flatnbr" formControlName="flatnbr" >
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" *ngIf="showEditPremisesForm">
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <div class="row">
+                            <div class="col-4">
+                                <h5>Edit Premisis</h5>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-block btn-success" type="submit" (click)="editPremises()">Save</button>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-block btn-outline-danger"  (click)="cancelFormAction()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="premisesid">Premisis ID</label>
+                                <input type="text" class="form-control form-control-sm" id="premisesid" name="premisesid" [(ngModel)]="selectedPremisis.PREMISISID" value="{{ selectedPremisis.PREMISISID }}" readonly>
+                            </div>
+                            <div class="col-6">
+                                <label for="premisesname">Premisis Name</label>
+                                <input type="text" class="form-control form-control-sm" id="premisesname" name="premisesname" [(ngModel)]="selectedPremisis.PREMISINAME" value="{{ selectedPremisis.PREMISINAME }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="latitude">Latitude</label>
+                                <input type="text" class="form-control form-control-sm" id="latitude" name="latitude" [(ngModel)]="selectedPremisis.LATITUDE" value="{{ selectedPremisis.LATITUDE }}" placeholder="00.00000 N">
+                            </div>
+                            <div class="col-6">
+                                <label for="longitude">Longitude</label>
+                                <input type="text" class="form-control form-control-sm" id="longitude" name="longitude" [(ngModel)]="selectedPremisis.LONGITUDE" value="{{ selectedPremisis.LONGITUDE }}" placeholder="00.00000 E">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="areaname">Area Name</label>
+                                <input type="text" class="form-control form-control-sm" id="areaname" name="areaname" [(ngModel)]="selectedPremisis.AREA" value="{{ selectedPremisis.AREA }}">
+                            </div>
+                            <div class="col-4">
+                                <label for="roadnbr">Road Number</label>
+                                <input type="text" class="form-control form-control-sm" id="roadnbr" name="roadnbr" [(ngModel)]="selectedPremisis.ROAD_NBR" value="{{ selectedPremisis.ROAD_NBR }}">
+                            </div>
+                            <div class="col-4">
+                                <label for="blocknbr">Block Number</label>
+                                <input type="text" class="form-control form-control-sm" id="blocknbr" name="blocknbr" [(ngModel)]="selectedPremisis.BLOCK_NBR" value="{{ selectedPremisis.BLOCK_NBR }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="bldgnbr">Building Number</label>
+                                <input type="text" class="form-control form-control-sm" id="bldgnbr" name="bldgnbr" [(ngModel)]="selectedPremisis.BLDG_NBR" value="{{ selectedPremisis.BLDG_NBR }}">
+                            </div>
+                            <div class="col-6">
+                                <label for="flatnbr">Flat Number</label>
+                                <input type="text" class="form-control form-control-sm" id="flatnbr" name="flatnbr" [(ngModel)]="selectedPremisis.FLAT_NBR" value="{{ selectedPremisis.FLAT_NBR }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" *ngIf="showPremisesList">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <input #input type="text" class="form-control" id="empid">
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col">
+                                        <button class="btn btn-block btn-primary" (click)="searchPremisesData(input.value)"><i class="material-icons">search</i></button>
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-block btn-secondary" (click)="triggerAddPremisesForm()"><i class="material-icons">library_add</i></button>
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-block btn-danger" (click)="reloadData()"><i class="material-icons" >picture_as_pdf</i></button>
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-block btn-info" (click)="reloadData()"><i class="material-icons">refresh</i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="12">
+                    <table class="table table-hover table-striped table-bordered table-fixed">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Area</th>
+                                <th>Block Number</th>
+                                <th>Road Number</th>
+                                <th>Building Number</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let premisis of premises" (click)="showPremisesDetails(premisis)" [routerLink]="['/hrms/premises/details']">
+                                <td>{{ premisis.PREMISISID }} - {{ premisis.PREMISINAME }}</td>
+                                <td>{{ premisis.AREA }}</td>
+                                <td>{{ premisis.BLOCK_NBR }}</td>
+                                <td>{{ premisis.ROAD_NBR }}</td>
+                                <td>{{ premisis.BLDG_NBR }}</td>
+                                <td><button class="btn btn-warning btn-block" (click)="triggerEditPremisesForm(premisis)"><i class="material-icons">create</i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

@@ -1,0 +1,138 @@
+<div class="container-fluid content-wrapper">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h3 class="page-title">Financials</h3>
+            <hr>
+            <div class="row">
+                <div class="col-3">
+                    <button class="btn btn-outline-info btn-block" (click)="showTBRprt()">Trial Balance</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-outline-info btn-block" (click)="showPLRprt()">Profit & Loss</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-outline-info btn-block" (click)="showISRprt()">Income Statement</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-outline-info btn-block" (click)="showCFRprt()">Cash Flow</button>
+                </div>
+
+                <div class="col-12">
+                    <div *ngIf="showTB">
+                        <div class="row">
+                            <br>
+                            <div class="col-4">
+                                <h5><br>Trial Balance<br></h5>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <br>
+                                <button class="btn btn-primary btn-block" (click)="changeList()">Change Year</button>
+                            </div>
+                        </div>
+                        <div *ngIf="!showYearTrialBalance">
+                            <div class="col-12"><h4>{{ curYear }}</h4></div>
+                            <table class="table table-hover table-striped table-bordered table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">GL Subgroup</th>
+                                        <th rowspan="2">GL Name</th>
+                                        <th colspan="2">Opening Balance (BHD)</th>
+                                        <th colspan="2">Current Period (BHD)</th>
+                                        <th colspan="2">Closing Balance (BHD)</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Debit</th>
+                                        <th>Credit</th>
+                                        <th>Debit</th>
+                                        <th>Credit</th>
+                                        <th>Debit</th>
+                                        <th>Credit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let rprt of curYearTBData">
+                                        <td>{{ rprt.GLSUBGROUP }}</td>
+                                        <td>{{ rprt.GLNAME}}</td>
+                                        <td>{{ rprt.DR_OPBAL | number:'1.3' }}</td>
+                                        <td>{{ rprt.CR_OPBAL | number:'1.3' }}</td>
+                                        <td>{{ rprt.DR_BAL | number:'1.3' }}</td>
+                                        <td>{{ rprt.CR_BAL | number:'1.3' }}</td>
+                                        <td>{{ rprt.DR_NETBAL | number:'1.3' }}</td>
+                                        <td>{{ rprt.CR_NETBAL | number:'1.3' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">TOTAL</th>
+                                        <th>{{ curYearTotal.DR_OPBAL | number:'1.3' }}</th>
+                                        <th>{{ curYearTotal.CR_OPBAL | number:'1.3' }}</th>
+                                        <th>{{ curYearTotal.DR_BAL | number:'1.3' }}</th>
+                                        <th>{{ curYearTotal.CR_BAL | number:'1.3' }}</th>
+                                        <th>{{ curYearTotal.DR_NETBAL | number:'1.3' }}</th>
+                                        <th>{{ curYearTotal.CR_NETBAL | number:'1.3' }}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div *ngIf="showYearTrialBalance">
+                            <div class="col-12"><h4>{{ preYear }}</h4></div>
+                            <table class="table table-hover table-striped table-bordered table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">GL Subgroup</th>
+                                        <th rowspan="2">GL Name</th>
+                                        <th colspan="2">Opening Balance (BHD)</th>
+                                        <th colspan="2">Current Period (BHD)</th>
+                                        <th colspan="2">Closing Balance (BHD)</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Debit</th>
+                                        <th>Credit</th>
+                                        <th>Debit</th>
+                                        <th>Credit</th>
+                                        <th>Debit</th>
+                                        <th>Credit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let rprt of preYearTBData">
+                                        <td>{{ rprt.GLSUBGROUP }}</td>
+                                        <td>{{ rprt.GLNAME}}</td>
+                                        <td>{{ rprt.DR_OPBAL | number:'1.3' }}</td>
+                                        <td>{{ rprt.CR_OPBAL | number:'1.3' }}</td>
+                                        <td>{{ rprt.DR_BAL | number:'1.3' }}</td>
+                                        <td>{{ rprt.CR_BAL | number:'1.3' }}</td>
+                                        <td>{{ rprt.DR_NETBAL | number:'1.3' }}</td>
+                                        <td>{{ rprt.CR_NETBAL | number:'1.3' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">TOTAL</th>
+                                        <th>{{ preYearTotal.DR_OPBAL | number:'1.3' }}</th>
+                                        <th>{{ preYearTotal.CR_OPBAL | number:'1.3' }}</th>
+                                        <th>{{ preYearTotal.DR_BAL | number:'1.3' }}</th>
+                                        <th>{{ preYearTotal.CR_BAL | number:'1.3' }}</th>
+                                        <th>{{ preYearTotal.DR_NETBAL | number:'1.3' }}</th>
+                                        <th>{{ preYearTotal.CR_NETBAL | number:'1.3' }}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="showPL">
+                        <h5><br>Profit & Loss<br></h5>
+                        
+                    </div>
+                    <div *ngIf="showIS">
+                        <h5><br>Income Statement<br></h5>
+                        
+                    </div>
+                    <div *ngIf="showCF">
+                        <h5><br>Cash Flow<br></h5>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

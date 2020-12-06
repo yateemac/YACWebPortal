@@ -1,0 +1,32 @@
+<div class="row no-gutters signin-page">
+  <div class="col-md-6 col-lg-6 col-sm-12">
+    <img src="../../../assets/imgs/authentication/office.jpg" style="height: 100%; width: 100%;">
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 form-section">
+    <h2 class="page-title">Yateem Air Conditioning Portal</h2>
+    <form class="signin-form" [formGroup]="signinForm" (ngSubmit)="onSignin()">
+      <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error }}</div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" >
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+          <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" >
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+      </div>
+      <div class="form-call-to-actions">
+        <a class="link-text" [routerLink]="['/authentication/forgot-password']">Forgot password?</a>
+        <button class="sign-in-btn" type="submit">Sign In</button>
+      </div>
+      <div class="existing-account-section">
+        <span class="text">Don't have an account? <a class="link-text" [routerLink]="['/authentication/signup']">Sign up</a>.</span>
+      </div>
+    </form>
+  </div>
+</div>
