@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CallsService {
-  private cmplntUrl = 'http://api.yateemac.net:5000/api/complaints';
+  private cmplntUrl = 'https://api.yateemac.net/api/complaints';
 
   constructor(private http: HttpClient) { }
 

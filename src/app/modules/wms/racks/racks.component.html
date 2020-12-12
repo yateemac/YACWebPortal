@@ -1,0 +1,102 @@
+<div class="container-fluid content-wrapper">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h3 class="page-title">Racks & Shelves</h3>
+            <hr>
+            <div *ngIf="rackList">
+                <div class="form-row">
+                    <div class="col-8">
+                        <h5>{{ rackNum }} Racks in {{ selectedLocNM }}</h5>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-link" (click)="getLocs()" style="float: right;"><p>&larr; Go back to Locations</p></button>
+                    </div>
+                </div>
+                <div *ngIf="gotRacks">
+                    <table class="table table-hover table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Rack</th>
+                                <th>Rows</th>
+                                <th>Columns</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let rack of racks">
+                                <td><button class="btn btn-link" (click)="getShelves(rack.RACKID, rack.RACKDESC, rack.RACKROWS, rack.RACKCOLUMNS)">{{ rack.RACKID }}&nbsp;-&nbsp;{{ rack.RACKDESC }}</button></td>
+                                <td>{{ rack.RACKROWS }}</td>
+                                <td>{{ rack.RACKCOLUMNS }}</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="noRacks">
+                    <p>No racks in this location!</p>
+                </div>
+                <div class="form-row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <button class="btn btn-primary btn-block" (click)="showAddRackForm()">Add Racks</button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="rackForm">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <h4>Manage Racks</h4>
+                        <form [formGroup]="newRackForm" (ngSubmit)="onAddingNewRack()">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="rackid">Rack ID</label>
+                                    <input type="text" class="form-control" id="rackid" formControlName="rackid" >
+                                    <div *ngIf="submitted && r.rackid.errors" class="invalid-feedback">
+                                        <div *ngIf="r.rackid.errors.required">ID is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="rackdesc">Description</label>
+                                    <input type="text" class="form-control" id="rackdesc" formControlName="rackdesc" >
+                                    <div *ngIf="submitted && r.rackdesc.errors" class="invalid-feedback">
+                                        <div *ngIf="r.rackdesc.errors.required">Description is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="rackrows">Rows</label>
+                                    <input type="text" class="form-control" id="rackrows" formControlName="rackrows" >
+                                    <div *ngIf="submitted && r.rackrows.errors" class="invalid-feedback">
+                                        <div *ngIf="r.rackrows.errors.required">Rows is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="rackcolumns">Columns</label>
+                                    <input type="text" class="form-control" id="rackcolumns" formControlName="rackcolumns" >
+                                    <div *ngIf="submitted && r.rackcolumns.errors" class="invalid-feedback">
+                                        <div *ngIf="r.rackcolumns.errors.required">Columns is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-call-to-actions">
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-success btn-block" type="submit">Create Rack</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-danger btn-block" (click)="getRacks(selectedLocID, selectedLocNM)">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

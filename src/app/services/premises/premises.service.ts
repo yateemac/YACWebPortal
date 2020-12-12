@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PremisesService {
-  private url = 'http://api.yateemac.net:5000/api';
+  private url = 'https://api.yateemac.net/api';
 
   constructor(private http: HttpClient) { }
 

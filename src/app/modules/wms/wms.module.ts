@@ -10,6 +10,9 @@ import { ReportsService } from 'src/app/services/reports/reports.service';
 import { ChartsModule } from 'ng2-charts';
 import { RacksAndShelvesComponent } from './racks-and-shelves/racks-and-shelves.component';
 import { WarehouseService } from 'src/app/services/warehouse/warehouse.service';
+import { LocationsComponent } from './locations/locations.component';
+import { RacksComponent } from './racks/racks.component';
+import { ShelvesComponent } from './shelves/shelves.component';
 
 export const wmsRoutes = [
   {
@@ -25,7 +28,10 @@ export const wmsRoutes = [
 @NgModule({
   declarations: [
     DashboardComponent,
-    RacksAndShelvesComponent
+    RacksAndShelvesComponent,
+    LocationsComponent,
+    RacksComponent,
+    ShelvesComponent
   ],
   providers: [
     WarehouseService,

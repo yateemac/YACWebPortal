@@ -1,0 +1,108 @@
+<div class="container-fluid content-wrapper">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h3 class="page-title">Racks & Shelves</h3>
+            <hr>
+            <div *ngIf="locList">
+                <h4>Locations</h4>
+                <table class="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Branch Type</th>
+                            <th>Area</th>
+                            <th>Remarks</th>
+                            <th>More Details</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-wrap">
+                        <tr *ngFor="let loc of locs">
+                            <td><button class="btn btn-link" (click)="getRacks(loc.LOCATIONID, loc.LOCATIONNAME)">{{ loc.LOCATIONID }} - {{ loc.LOCATIONNAME }}</button></td>
+                            <td>{{ loc.BRANCH_TYPE }}</td>
+                            <td>{{ loc.AREANAME }}</td>
+                            <td>{{ loc.REMARKS }}</td>
+                            <td><button class="btn btn-warning btn-block" (click)="showLocDetails(loc)">&rarr;</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="locDetails">
+                <div class="form-row">
+                    <div class="col-8">
+                        <h5>{{ selectedLoc.LOCATIONNAME }}</h5>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-link" (click)="getLocs()" style="float: right;"><p>&larr; Go back to Locations</p></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h5><u>Address</u></h5>
+                        <div class="row">
+                            <div class="col-6">Building Nbr:</div>
+                            <div class="col-6">{{ selectedLoc.BLDG_NBR }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">Road Nbr:</div>
+                            <div class="col-6">{{ selectedLoc.ROAD_NBR }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">Block Nbr:</div>
+                            <div class="col-6">{{ selectedLoc.BLOCK_NBR }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">Area:</div>
+                            <div class="col-6">{{ selectedLoc.AREANAME }}</div>
+                        </div>
+                        <hr>
+                        <h5><u>Contact Details</u></h5>
+                        <div class="row">
+                            <div class="col-6">Contact Nbr:</div>
+                            <div class="col-6">{{ selectedLoc.CONTACT_NUMBER }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">Contact Person:</div>
+                            <div class="col-6">{{ selectedLoc.CONTACT_PERSON }}</div>
+                        </div>
+                        <hr>
+                        <h5><u>Insurance Details</u></h5>
+                        <div class="row">
+                            <div class="col-6">Insurance Policy Nbr:</div>
+                            <div class="col-6">{{ selectedLoc.INSURANCE_POLICY_NBR }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">Insured Amount:</div>
+                            <div class="col-6">{{ selectedLoc.INSURED_AMOUNT }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">Insurance Expiry Date:</div>
+                            <div class="col-6">{{ selectedLoc.INSURANCE_EXPIRY_DATE | date:"dd/MM/yyyy" }}</div>
+                        </div>
+                        <hr>
+                        <h5><u>Other Details</u></h5>
+                        <div class="row">
+                            <div class="col-6">Fixtures & Fittings:</div>
+                            <div class="col-6">{{ selectedLoc.FIXTURE_AND_FITTINGS }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">Nature of Stock:</div>
+                            <div class="col-6">{{ selectedLoc.NATURE_OF_STOCK }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">Remarks:</div>
+                            <div class="col-6">{{ selectedLoc.REMARKS }}</div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-6">
+                        <agm-map [latitude]='latitude' [longitude]='longitude' [mapTypeId]='mapType' [zoom]='zoom'>
+                            <agm-marker [latitude]='latitude' [longitude]='longitude' [label]='selectedLoc.LOCATIONID'></agm-marker>
+                        </agm-map>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

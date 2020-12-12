@@ -6,7 +6,7 @@ import { uptime } from 'process';
   providedIn: 'root'
 })
 export class WarehouseService {
-  private url = 'http://api.yateemac.net:5000/api';
+  private url = 'https://api.yateemac.net/api';
 
   constructor(private http: HttpClient) { }
 

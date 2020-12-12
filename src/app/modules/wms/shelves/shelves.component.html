@@ -1,0 +1,270 @@
+<div class="container-fluid content-wrapper">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h3 class="page-title">Racks & Shelves</h3>
+            <hr>
+            <div *ngIf="shelfList">
+                <div class="form-row">
+                    <div class="col-8">
+                        <h5>Shelves in {{ selectedRackNM }} ({{ selectedRackID }}) in {{ selectedLocNM }}</h5><br>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-link" (click)="getRacks(selectedLocID, selectedLocNM)" style="float: right;"><p>&larr; Go back to Racks</p></button>
+                    </div>
+                </div>
+                <div *ngIf="gotShelves">
+                    <table class="table table-bordered">
+                        <tr *ngFor="let item of array(this.rows); let i = index;">
+                            <td *ngFor="let item of array(this.columns); let j = index;" [ngClass]="{'red': (shelves[i][j].SHELFID == '---'), 'blue': (shelves[i][j].SHELFID != '---')}"> <!-- style="background-color:lemonchiffon"> -->
+                                <div class="chart-card">
+                                    <div class="chart-card-header" style="background-color: beige;">
+                                        <span>
+                                            <button class="btn btn-block btn-link" style="color: black;" (click)="showShelfDetails(shelves[i][j])">{{ shelves[i][j].SHELFID }}</button>
+                                        </span>
+                                    </div>
+                                    <div class="chart-card-body">
+                                        <p>{{ shelves[i][j].ITEMCODE }}</p>
+                                        <p>{{ shelves[i][j].ITEMDESC }}</p>
+                                        <p>{{ shelves[i][j].ITEMQTY }} {{ shelves[i][j].ITEMUNITDESCRIPTION }}</p>
+                                    </div>
+                                    <button class="btn btn-link" (click)="showEditShelfForm(shelves[i][j])" style="float: right; color: lightcyan;">&#9998;</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div *ngIf="noShelves">
+                    <table class="table table-bordered">
+                        <tr *ngFor="let item of array(this.rows); let i = index;">
+                            <td *ngFor="let item of array(this.columns); let j = index;" style="background-color:darkkhaki">
+                                <div class="chart-card-header" style="background-color: beige;">
+                                    <span>
+                                        <p style="color: white;">---</p>
+                                    </span>
+                                </div>
+                                <div class="chart-card-body">
+                                    <p>No items placed here.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="form-row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <button class="btn btn-primary btn-block" (click)="showAddShelfForm()">Add Items</button>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+            <div *ngIf="shelfDetails">
+                <div class="form-row">
+                    <div class="col-8">
+                        <h5>Location: {{ selectedLocID }} &nbsp; | &nbsp; Rack: {{ selectedRackID }} &nbsp; | &nbsp; Shelf: {{ selectedShelfID }}</h5>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-link" (click)="getShelves(selectedRackID, selectedRackNM, rows, columns)" style="float: right;"><p>&larr; Go back to Shelf {{ selectedSheldID }}</p></button>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-hover table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Category</th>
+                                <th>Cost Price</th>
+                                <th>Quantity</th>
+                                <th>Last Purchase Date</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items">
+                                <td>{{ item.ITEMCODE }} - {{ item.ITEMDESC }}</td>
+                                <td>{{ item.CATEGORY }}</td>
+                                <td>{{ item.ITEMCOSTPRICE }}</td>
+                                <td>{{ item.ITEMQTY }} {{ item.ITEMUNITDESCRIPTION }}</td>
+                                <td>{{ item.ITEM_LAST_PURCHASE_DATE | date:"dd/MM/yyyy" }}</td>
+                                <td><button class="btn btn-success btn-block" (click)="showEditShelfForm(item)"><i class="material-icons">create</i></button></td>
+                                <td><button class="btn btn-danger btn-block" (click)="deleteItem(item)"><i class="material-icons">clear</i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="addShelfForm">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <h4>Manage Shelf</h4>
+                        <form [formGroup]="newShelfForm" (ngSubmit)="onAddingNewShelf()">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="shelfid">Shelf ID</label>
+                                    <input type="text" class="form-control" id="shelfid" formControlName="shelfid" (focusout)="checkShelf()">
+                                    <p>{{ message }}</p>
+                                    <div *ngIf="submitted && s.shelfid.errors" class="invalid-feedback">
+                                        <div *ngIf="s.shelfid.errors.required">Shelf ID is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemcode">Product Code</label>
+                                    <input type="text" class="form-control" id="itemcode" formControlName="itemcode" (focusout)="checkProductValidity(newShelfForm)">
+                                    <div *ngIf="submitted && s.itemcode.errors" class="invalid-feedback">
+                                        <div *ngIf="s.itemcode.errors.required">Product Code is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemdesc">Description</label>
+                                    <div class="form-group col-12" style="background-color: gray; padding: 5px;">
+                                        <p style="color: white;">{{ itemDesc }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemcategory">Category</label>
+                                    <div class="form-group col-12" style="background-color: gray; padding: 5px;">
+                                        <p style="color: white;">{{ itemCategory }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemcategory">Cost</label>
+                                    <div class="form-group col-12" style="background-color: gray; padding: 5px;">
+                                        <p style="color: white;">{{ itemCost }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemcategory">Last Purchase Date</label>
+                                    <div class="form-group col-12" style="background-color: gray; padding: 5px;">
+                                        <p style="color: white;">{{ itemPurchaseDate | date:"dd/MM/yyyy" }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemqty">Quantity</label>
+                                    <input type="text" class="form-control" id="itemqty" formControlName="itemqty" >
+                                    <div *ngIf="submitted && s.itemqty.errors" class="invalid-feedback">
+                                        <div *ngIf="s.itemqty.errors.required">Quantity is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="remarks">Remarks</label>
+                                    <input type="text" class="form-control" id="shelfid" formControlName="remarks" >
+                                    <div *ngIf="submitted && s.remarks.errors" class="invalid-feedback">
+                                        <div *ngIf="s.remarks.errors.required">Remarks is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-call-to-actions">
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-success btn-block" type="submit">Create Shelf</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-danger btn-block" (click)="getShelves(selectedRackID, selectedRackNM, rows, columns)">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <div *ngIf="editShelfForm">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <h4>Shelf & Product Management</h4>
+                        <form [formGroup]="newItemForm" (ngSubmit)="onEditingShelf()">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemcode">Product Code</label>
+                                    <input type="text" class="form-control" id="itemcode" formControlName="itemcode" (focusout)="checkProductValidity(newItemForm)" value="{{ itemCode }}"> 
+                                    <div *ngIf="submitted && s.itemcode.errors" class="invalid-feedback">
+                                        <div *ngIf="s.itemcode.errors.required">Product Code is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemdesc">Description</label>
+                                    <div class="form-group col-12" style="background-color: gray; padding: 5px;">
+                                        <p style="color: white;">{{ itemDesc }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemcategory">Category</label>
+                                    <div class="form-group col-12" style="background-color: gray; padding: 5px;">
+                                        <p style="color: white;">{{ itemCategory }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemcategory">Cost</label>
+                                    <div class="form-group col-12" style="background-color: gray; padding: 5px;">
+                                        <p style="color: white;">{{ itemCost }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemcategory">Last Purchase Date</label>
+                                    <div class="form-group col-12" style="background-color: gray; padding: 5px;">
+                                        <p style="color: white;">{{ itemPurchaseDate | date:"dd/MM/yyyy" }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="itemqty">Quantity</label>
+                                    <input type="text" class="form-control" id="itemqty" formControlName="itemqty" value="{{ itemQty }}">
+                                    <div *ngIf="submitted && s.itemqty.errors" class="invalid-feedback">
+                                        <div *ngIf="s.itemqty.errors.required">Quantity is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="remarks">Remarks</label>
+                                    <input type="text" class="form-control" id="shelfid" formControlName="remarks" >
+                                    <div *ngIf="submitted && s.remarks.errors" class="invalid-feedback">
+                                        <div *ngIf="s.remarks.errors.required">Remarks is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-call-to-actions">
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-success btn-block" type="submit">Update Item</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-danger btn-block" (click)="getShelves(selectedRackID, selectedRackNM, rows, columns)">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

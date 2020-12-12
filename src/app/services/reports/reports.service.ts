@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ReportsService {
-  private url = 'http://api.yateemac.net:5000/api/reports';
+  private url = 'https://api.yateemac.net/api/reports';
 
   constructor(private http: HttpClient) { }
 
